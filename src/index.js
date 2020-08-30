@@ -1,6 +1,5 @@
 const { registerBlockType } = wp.blocks;
 //
-console.log('test')
 
 registerBlockType('wpscript-blocks/test-block', {
   title: 'Basic Ex',

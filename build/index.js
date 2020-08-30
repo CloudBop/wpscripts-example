@@ -100,7 +100,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var registerBlockType = wp.blocks.registerBlockType; //
 
-console.log('test');
 registerBlockType('wpscript-blocks/test-block', {
   title: 'Basic Ex',
   icon: 'smiley',
