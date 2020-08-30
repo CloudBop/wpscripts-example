@@ -98,20 +98,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
-var registerBlockType = wp.blocks.registerBlockType; //
+var registerBlockType = wp.blocks.registerBlockType;
+var RichText = wp.editor.RichText;
 
+var Edit = function Edit(props) {
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes;
+  console.log('props', props);
+
+  var onChangeText = function onChangeText(text) {
+    return setAttributes({
+      content: text
+    });
+  };
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+    tagName: "p",
+    onChange: onChangeText,
+    value: attributes.content
+  });
+}; //
+
+
+console.log('testing');
 registerBlockType('wpscript-blocks/test-block', {
   title: 'Basic Ex',
   icon: 'smiley',
+  description: 'a test description',
   category: 'layout',
-  edit: function edit(_ref) {
-    var className = _ref.className;
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-      className: className
-    }, "Hello World!");
+  //
+  attributes: {
+    // map markup info from save content into save(props)
+    content: {
+      //
+      type: 'array',
+      // content of p
+      source: 'children',
+      // select from html
+      selector: 'p'
+    }
   },
-  save: function save() {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, "Hello World");
+  edit: Edit,
+  save: function save(props) {
+    console.log('props', props);
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, " ", props.attributes.content[0], " ");
   }
 });
 
