@@ -38,7 +38,7 @@ registerBlockType('wpscript-blocks/test-block', {
   },
   edit: Edit,
   save: (props) => {
-    console.log('props', props)
-    return (<p> {props.attributes.content[0]} </p>)
+    // console.log('props', props)
+    return (<RichText.Content tagname="p" value={props.attributes.content[0]} />)
   }
 })
